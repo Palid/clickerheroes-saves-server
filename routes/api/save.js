@@ -17,9 +17,9 @@ function updateSave(req, res) {
       value: req.body.save
     }
   }, function(err) {
-    if (err){
-       console.log(err);
-       res.send({
+    if (err) {
+      console.log(err);
+      res.send({
         "status": "ERROR",
         "description": "Wrong request",
         "code": "I'm a teapot",
@@ -28,9 +28,8 @@ function updateSave(req, res) {
           "creationDate": Date,
           "save": "21321321321321312"
         }
-       });
-    }
-    else {
+      });
+    } else {
       res.send({
         "status": "OK",
         "lastAccessDate": lastAccessDate
@@ -52,11 +51,19 @@ router
     });
   })
   .get('/:id', function(req, res) {
+    if (req.save) {
+     res.send({
+       currentSave: req.save.currentSave,
+       previousSave: req.save.previousSave,
+       lastAccessDate: req.save.lastAccessDate
+     });
+   } else {
     res.send({
-      currentSave: req.save.currentSave,
-      previousSave: req.save.previousSave,
-      lastAccessDate: req.save.lastAccessDate
+      "status": "ERROR",
+      "description": "Wrong or non existant saveID",
+      "code": "I'm a teapot"
     });
+   }
   })
   .put('/:id', function(req, res) {
     if (req.body.forceSave) {
