@@ -2,7 +2,7 @@
   "name": "clickerheroes-saves-server",
   "version": "1.0.0",
   "description": "Cloud saves server for Clicker Heroes",
-  "main": "app.js",
+  "main": "bin/www",
   "dependencies": {
     "body-parser": "^1.9.2",
     "debug": "^2.1.0",
@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/Palid/clickerheroes-saves-server/issues"
   },
-  "homepage": "https://github.com/Palid/clickerheroes-saves-server"
+  "homepage": "https://github.com/Palid/clickerheroes-saves-server",
+  "engines": {
+    "node": "0.10.x"
+  }
 }

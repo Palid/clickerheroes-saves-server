@@ -1,9 +1,7 @@
 'use strict';
 
 module.exports = {
-  db: {
-    url: "mongodb://localhost/clicker-heroes-dev"
-  },
+  db: "mongodb://localhost/clicker-heroes-dev",
   app: {
     name: "Clicker Heroes Cloud DEV"
   },

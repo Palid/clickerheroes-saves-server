@@ -35,17 +35,20 @@ app.use(bodyParser.urlencoded({
 app.use(allowCrossDomain);
 
 //Initializing system variables
-var config = require('./config/config'),
-  mongoose = require('mongoose');
+var config;
+if (process.env.NODE_ENV === "development") {
+  config = require('./config/env/development.js');
+} else {
+  config = {};
+}
+var mongoose = require('mongoose');
 
 //Bootstrap db connection
-mongoose.connect(config.db.url, {
-  user: config.db.login || undefined,
-  pass: config.db.password || undefined
-});
+mongoose.connect(process.env.MONGOSOUP_URL || config.db);
 
 // load models
 require('./models/index.js');
+// load routes
 var routes = require('./routes');
 
 app.use('/', routes.home);
