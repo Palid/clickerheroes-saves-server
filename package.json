@@ -1,0 +1,38 @@
+{
+  "name": "clickerheroes-saves-server",
+  "version": "1.0.0",
+  "description": "Cloud saves server for Clicker Heroes",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "debug": "^2.1.0",
+    "express": "^4.10.2",
+    "express-session": "^1.9.1",
+    "jade": "^1.7.0",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.19",
+    "morgan": "^1.5.0",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-github": "^0.1.5",
+    "passport-google-oauth": "^0.1.5",
+    "passport-local": "^1.0.0",
+    "passport-reddit": "^0.2.4",
+    "passport-twitter": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Palid/clickerheroes-saves-server.git"
+  },
+  "author": "Dariusz 'Palid' Niemczyk",
+  "license": "GNU v2",
+  "bugs": {
+    "url": "https://github.com/Palid/clickerheroes-saves-server/issues"
+  },
+  "homepage": "https://github.com/Palid/clickerheroes-saves-server"
+}
