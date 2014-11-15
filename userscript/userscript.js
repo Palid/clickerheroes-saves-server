@@ -34,11 +34,11 @@
   };
 
   function updateSave(saveEl){
-    var save = JSMod.getUserData();
     saveEl.val(save);
+    var save = JSMod.getUserData();
     return $.ajax(getURL('save')+ '/' + cookies.saveID, {
       data: {
-        save: JSON.parse(save),
+        save: save,
         currentDate: new Date(),
         creationDate: new Date()
       },
@@ -68,8 +68,6 @@
       el.hide();
     }
     ROW.append(forms.afterLogin);
-
-    console.log(forms);
 
     var saveInterval;
     var saveEl = forms.afterLogin.find('.save-place');
@@ -104,7 +102,7 @@
         dataType: 'json',
         type: 'GET'
       }).done(function(response){
-        // console.log(response);
+        console.log(response);
         saveEl.val(response.currentSave);
       });
     });

@@ -15,7 +15,7 @@ app.set('view engine', 'jade');
 
 function allowCrossDomain(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 }
@@ -57,6 +57,7 @@ app.use('/login', routes.login);
 app.use('/register', routes.register);
 app.use('/save', routes.save);
 app.use('/userscript', routes.userscript);
+app.use('/util', routes.decode);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

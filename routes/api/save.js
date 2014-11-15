@@ -4,6 +4,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Save = mongoose.model('Save');
 
+var saveUtil = require('../../util/save-util.js');
+
 function updateSave(req, res) {
   var lastAccessDate = Date.now();
   Save.update({
@@ -14,7 +16,7 @@ function updateSave(req, res) {
     currentSave: {
       lastChange: req.body.currentDate,
       creationDate: req.body.creationDate,
-      value: req.body.save
+      value: JSON.parse(req.body.save)
     }
   }, function(err) {
     if (err) {
@@ -26,13 +28,14 @@ function updateSave(req, res) {
         "requestExample": {
           "currentDate": Date,
           "creationDate": Date,
-          "save": "21321321321321312"
+          "save": ""
         }
       });
     } else {
       res.send({
         "status": "OK",
-        "lastAccessDate": lastAccessDate
+        "lastAccessDate": lastAccessDate,
+        "encodedSave": saveUtil.encoder(req.body.save)
       });
     }
   });
@@ -54,8 +57,14 @@ router
     if (req.save) {
      res.send({
       "status": "OK",
-       "currentSave": req.save.currentSave,
-       "previousSave": req.save.previousSave,
+      "raw": {
+        "currentSave": req.save.currentSave,
+        "previousSave": req.save.previousSave
+      },
+      "encrypted": {
+        "currentSave": saveUtil.encoder(JSON.stringify(req.save.currentSave)),
+        "previousSave": saveUtil.encoder(JSON.stringify(req.save.previousSave))
+      },
        "lastAccessDate": req.save.lastAccessDate
      });
    } else {
