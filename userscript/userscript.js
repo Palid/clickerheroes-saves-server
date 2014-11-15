@@ -34,10 +34,9 @@
   };
 
   function updateSave(saveEl){
-    var save = JSMod.getUserData();
     return $.ajax(getURL('save')+ '/' + cookies.saveID, {
       data: {
-        save: save,
+        save: JSMod.getUserData(),
         currentDate: new Date(),
         creationDate: new Date()
       },

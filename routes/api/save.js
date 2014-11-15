@@ -62,8 +62,8 @@ router
         "previousSave": req.save.previousSave
       },
       "encrypted": {
-        "currentSave": saveUtil.encoder(JSON.stringify(req.save.currentSave)),
-        "previousSave": saveUtil.encoder(JSON.stringify(req.save.previousSave))
+        "currentSave": saveUtil.encoder(JSON.stringify(req.save.currentSave.value)),
+        "previousSave": saveUtil.encoder(JSON.stringify(req.save.previousSave.value))
       },
        "lastAccessDate": req.save.lastAccessDate
      });
