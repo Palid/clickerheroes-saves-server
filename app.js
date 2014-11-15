@@ -56,6 +56,7 @@ app.use('/api', routes.api);
 app.use('/login', routes.login);
 app.use('/register', routes.register);
 app.use('/save', routes.save);
+app.use('/userscript', routes.userscript);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

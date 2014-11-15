@@ -13,7 +13,6 @@ router
       User.findOne({
         username: req.body.login
       }, function(err, doc) {
-        console.log()
         if (err) {
           res.send({
             "status": "ERROR",
@@ -34,7 +33,7 @@ router
             res.send({
               "status": "ERROR",
               "description": "Wrong password",
-              "code": "I'm a teapot"
+              "code": 8
             });
           }
           User.update({
@@ -48,18 +47,19 @@ router
           res.send({
             "status": "ERROR",
             "description": "User not found",
-            "code": "I'm a teapot"
+            "code": 9
           });
         }
       });
     } else {
       res.send({
         "status": "ERROR",
-        "description": "Wrong request.",
+        "description": "Wrong request",
         "requestExample": {
           "login": "Potato",
           "password": "aBigOne"
-        }
+        },
+        "code": 99
       });
     }
   });

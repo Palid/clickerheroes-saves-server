@@ -53,9 +53,10 @@ router
   .get('/:id', function(req, res) {
     if (req.save) {
      res.send({
-       currentSave: req.save.currentSave,
-       previousSave: req.save.previousSave,
-       lastAccessDate: req.save.lastAccessDate
+      "status": "OK",
+       "currentSave": req.save.currentSave,
+       "previousSave": req.save.previousSave,
+       "lastAccessDate": req.save.lastAccessDate
      });
    } else {
     res.send({

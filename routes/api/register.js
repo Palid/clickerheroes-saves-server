@@ -31,8 +31,7 @@ router
               res.send({
                 "status": "ERROR",
                 "description": "User already exists",
-                "code": "11000",
-                "type": "mongoDB"
+                "code": "11000"
               });
             } else {
               res.send({
@@ -69,7 +68,7 @@ router
         res.send({
           "status": "ERROR",
           "description": "User already exists",
-          "code": "I'm a teapot"
+          "code": "11000"
         });
       }
     });

@@ -14,12 +14,12 @@ var SaveSchema = new Schema({
   currentSave: {
     lastChange: Date,
     creationDate: Date,
-    value: String
+    value: Object
   },
   previousSave: {
     lastChange: Date,
     creationDate: Date,
-    value: String
+    value: Object
   },
   lastAccessDate: Date
 });
