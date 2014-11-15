@@ -16,7 +16,7 @@ app.set('view engine', 'jade');
 function allowCrossDomain(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
   next();
 }
 
