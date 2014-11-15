@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Clicker Saves
 // @namespace   https://github.com/Palid/clickerheroes-saves-server
-// @version     0.4
+// @version     0.4.1
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
 // @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js

@@ -35,7 +35,9 @@ function updateSave(req, res) {
       res.send({
         "status": "OK",
         "lastAccessDate": lastAccessDate,
-        "encodedSave": saveUtil.encoder(req.body.save)
+        // Unfortunately, it has to be done that way. At least till now.
+        // It's evil and bad, I know. :(
+        "encodedSave": saveUtil.encoder(JSON.stringify(JSON.parse(req.body.save)))
       });
     }
   });

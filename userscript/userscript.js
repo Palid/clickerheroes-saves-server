@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Clicker Saves
 // @namespace   https://github.com/Palid/clickerheroes-saves-server
-// @version     0.4
+// @version     0.4.1
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
 // @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js
@@ -30,7 +30,7 @@
   var forms = {
     choose: $('<div class="btn-group login-buttons" role="group"> <button type="button" class="btn btn-default" id="show-login">Login</button> <button type="button" class="btn btn-default" id="show-register">Register</button></div>'),
     login: $('<form class="form-inline" role="form" style="display:none;"> <div class="form-group group-login"> <div class="input-group"> <label class="sr-only" for="login-input">Login</label> <div class="input-group-addon">(*´・ｖ・)</div><input type="text" class="form-control" id="login-input" placeholder="Login"> </div></div><div class="form-group"> <div class="input-group group-password"> <label class="sr-only" for="password-input">Password</label> <div class="input-group-addon">( ¬‿¬) </div><input type="password" class="form-control" id="password-input" placeholder="Password"> </div></div><div class="checkbox"> <label> <input id="rembember-me" type="checkbox"> Remember me </label> </div><button id="sign-in" class="btn btn-default login">Sign in</button> <h4 style="display:none;" class="failure-header"></h4></form>'),
-    afterLogin: $('<form class="form-inline" role="form"> <div class="input-group input-group-lg"> <span class="input-group-addon">⌂</span> <input type="text" class="form-control save-place" disabled="disabled" placeholder="Your save goes here"> </div><button id="from-cloud" class="btn btn-default">Get last save from cloud</button> <button id="to-cloud" class="btn btn-default">Save to cloud</button> <div class="checkbox"> <label> <input class="autosave" type="checkbox"> Autosave every 60seconds </label> </div></form>')
+    afterLogin: $('<form class="form-inline" role="form"> <div class="input-group input-group-lg input-group-save"> <span class="input-group-addon">⌂</span> <input type="text" class="form-control save-place" readonly placeholder="Your save goes here"> </div><button id="from-cloud" class="btn btn-default">Get last save from cloud</button> <button id="to-cloud" class="btn btn-default">Save to cloud</button> <div class="checkbox"> <label> <input class="autosave" type="checkbox"> Autosave every 60seconds </label> </div></form>')
   };
 
   function updateSave(saveEl){
@@ -67,6 +67,7 @@
     ROW.append(forms.afterLogin);
 
     var saveInterval;
+    var inputGroupSave = forms.afterLogin.find('.input-group-save');
     var saveEl = forms.afterLogin.find('.save-place');
     var autosave = forms.afterLogin.find('.autosave');
     var fromCloud = forms.afterLogin.find('#from-cloud');
@@ -77,6 +78,10 @@
        saveInterval =  setAutosaveInterval(saveInterval, saveEl);
     }
 
+    inputGroupSave.on('click', function(e) {
+      e.preventDefault();
+      saveEl.select();
+    });
 
     autosave.on('change', function() {
       var checked = autosave.prop('checked');
