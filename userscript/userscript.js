@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Clicker Saves
 // @namespace   https://github.com/Palid/clickerheroes-saves-server
-// @version     0.3
+// @version     0.31
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
 // @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js
@@ -33,22 +33,19 @@
     afterLogin: $('<form class="form-inline" role="form"> <div class="input-group input-group-lg"> <span class="input-group-addon">⌂</span> <input type="text" class="form-control save-place" disabled="disabled" placeholder="Your save goes here"> </div><button id="from-cloud" class="btn btn-default">Get last save from cloud</button> <button id="to-cloud" class="btn btn-default">Save to cloud</button> <div class="checkbox"> <label> <input class="autosave" type="checkbox"> Autosave every 60seconds </label> </div></form>')
   };
 
-  function formatSaveToJSON(save) {
-    return save.substring(1, save.length-1);
-  }
-
   function updateSave(saveEl){
-    var save = formatSaveToJSON(JSMod.getUserData());
-    saveEl.val(window.btoa(save));
+    var save = JSMod.getUserData();
+    saveEl.val(save);
     return $.ajax(getURL('save')+ '/' + cookies.saveID, {
       data: {
-        save: save,
+        save: JSON.parse(save),
         currentDate: new Date(),
         creationDate: new Date()
       },
       dataType: 'json',
       type: 'PUT'
-    }).done(function(response){
+    })
+    .done(function(response){
       console.log(response);
     });
   }
@@ -75,21 +72,21 @@
     console.log(forms);
 
     var saveInterval;
-    var savePlace = forms.afterLogin.find('.save-place');
+    var saveEl = forms.afterLogin.find('.save-place');
     var autosave = forms.afterLogin.find('.autosave');
     var fromCloud = forms.afterLogin.find('#from-cloud');
     var toCloud = forms.afterLogin.find('#to-cloud');
     autosave.prop('checked', cookies.autosave);
 
     if (cookies.autosave) {
-       saveInterval =  setAutosaveInterval(saveInterval, savePlace);
+       saveInterval =  setAutosaveInterval(saveInterval, saveEl);
     }
 
 
     autosave.on('change', function() {
       var checked = autosave.prop('checked');
       if (checked && !saveInterval) {
-        setAutosaveInterval(saveInterval, savePlace);
+        setAutosaveInterval(saveInterval, saveEl);
       } else {
         clearInterval(saveInterval);
         saveInterval = undefined;
@@ -107,14 +104,14 @@
         dataType: 'json',
         type: 'GET'
       }).done(function(response){
-        console.log(response);
-        savePlace.val(window.btoa(response.currentSave));
+        // console.log(response);
+        saveEl.val(response.currentSave);
       });
     });
 
     toCloud.on('click', function(e){
       e.preventDefault();
-      updateSave(savePlace);
+      updateSave(saveEl);
     });
 
   }

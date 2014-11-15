@@ -7,7 +7,7 @@ var Save = mongoose.model('Save');
 function updateSave(req, res) {
   var lastAccessDate = Date.now();
   Save.update({
-    __id: req.save._id
+    _id: req.save._id
   }, {
     lastAccessDate: lastAccessDate,
     previousSave: req.save.currentSave,
