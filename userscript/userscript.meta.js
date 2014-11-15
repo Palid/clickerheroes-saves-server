@@ -4,8 +4,8 @@
 // @version     0.4
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
-// @downloadURL https://raw.githubusercontent.com/Palid/clickerheroes-saves-server/master/userscript/userscript.js
-// @updateURL   https://raw.githubusercontent.com/Palid/clickerheroes-saves-server/master/userscript/userscript.meta.js
+// @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js
+// @updateURL   https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.meta.js
 // @include     http://www.clickerheroes.com/
 // @include     https://clicker-heroes-saves-server.herokuapp.com/
 // @grant       none

@@ -5,7 +5,7 @@
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
 // @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js
-// @updateURL   https://clicker-heroes-saves-server.herokuapp.com/userscript/raw/userscript.meta.js
+// @updateURL   https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.meta.js
 // @include     http://www.clickerheroes.com/
 // @include     https://clicker-heroes-saves-server.herokuapp.com/
 // @grant       none
