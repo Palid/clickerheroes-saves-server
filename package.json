@@ -1,6 +1,6 @@
 {
   "name": "clickerheroes-saves-server",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Cloud saves server for Clicker Heroes",
   "main": "bin/www",
   "dependencies": {

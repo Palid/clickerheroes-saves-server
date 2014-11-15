@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Clicker Saves
 // @namespace   https://github.com/Palid/clickerheroes-saves-server
-// @version     0.31
+// @version     0.4
 // @authors     Dariusz 'Palid' Niemczyk
 // @description Cloud saves for clickerheroes
 // @downloadURL https://clicker-heroes-saves-server.herokuapp.com/userscript/userscript.js
@@ -34,7 +34,6 @@
   };
 
   function updateSave(saveEl){
-    saveEl.val(save);
     var save = JSMod.getUserData();
     return $.ajax(getURL('save')+ '/' + cookies.saveID, {
       data: {
@@ -46,16 +45,15 @@
       type: 'PUT'
     })
     .done(function(response){
-      console.log(response);
+      if (response.status === "OK") {
+        saveEl.val(response.encodedSave);
+      }
     });
   }
 
   function setAutosaveInterval(saveInterval, saveEl) {
     saveInterval = setInterval(function() {
       updateSave(saveEl);
-      // .done(function(response){
-        // console.log(response);
-      // });
     }, 1000 * 60);
     return saveInterval;
   }
@@ -102,8 +100,7 @@
         dataType: 'json',
         type: 'GET'
       }).done(function(response){
-        console.log(response);
-        saveEl.val(response.currentSave);
+        saveEl.val(response.encrypted.currentSave);
       });
     });
 
