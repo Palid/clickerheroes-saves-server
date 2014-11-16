@@ -1,20 +1,21 @@
 "use strict";
 
-var fs = require('fs');
 var path = require('path');
-var _ = require('lodash');
+var USERSCRIPT_DIR = path.resolve(__dirname, '../../userscript');
+
 var express = require('express');
 var router = express.Router();
 
-var userscript = fs.readFileSync(path.resolve(__dirname, '../../userscript/userscript.js'), 'utf-8');
-var formatted = '<pre style="word-wrap: break-word; white-space: pre-wrap;">' +  _.escape(userscript) + '</pre>';
+var serveIndex = require('serve-index');
+var serveStatic = require('serve-static');
+
 
 router
-.get('/', function(req, res){
-  res.send(formatted);
-})
-.get('/raw', function(req, res){
-  res.send(userscript);
-});
+  .param('file', function(req, res, next, file) {
+    req.fileToServe = file;
+    next();
+  })
+  .get('/', serveIndex(USERSCRIPT_DIR))
+  .get('/:file', serveStatic(USERSCRIPT_DIR));
 
 module.exports = router;

@@ -69,6 +69,9 @@ function sprinkle(string) {
 function decode(string) {
   if (string.search(ANTI_CHEAT_CODE) === -1) {
     string = fromAntiCheatFormat(string);
+  } else {
+    var ERR = new Error("Invalid Save File (Anti-Cheat String not Found)");
+    return ERR;
   }
   try {
     return new Buffer(string, 'base64').toString('binary');
